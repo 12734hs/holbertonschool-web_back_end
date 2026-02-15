@@ -3,6 +3,6 @@
 import math
 
 
-def floar(n: float) -> int:
+def floor(n: float) -> int:
     """THe Floor Function"""
     return math.floor(n)
