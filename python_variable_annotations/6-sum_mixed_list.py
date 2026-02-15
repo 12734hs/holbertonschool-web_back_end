@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""This is about annotation"""
-from typing import List, Union
+"""MESSIIIIIIIIIII"""
+from typing import Union
 
 
-def sum_mixed_list(mxd_list: List[Union[int, float]]) -> float:
-    """Funct about the summary"""
-    return sum(mxd_list)
+def to_kv(k: str, v:Union[int, float]) -> tuple[str, float]:
+    """THis is about the annotation"""
+    v_square = v ** 2
+    return (k, v_square)
