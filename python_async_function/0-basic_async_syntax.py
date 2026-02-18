@@ -3,8 +3,8 @@ import asyncio
 import random
 """THis is async"""
 
-async def wait_random(max_delay):
+async def wait_random(max_delay) -> float:
     """This is async func"""
-    result = random.uniform(0, max_delay)
+    result: float = random.uniform(0, max_delay)
     await asyncio.sleep(result)
     return result
