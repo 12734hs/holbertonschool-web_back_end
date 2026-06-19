@@ -1,5 +1,5 @@
 let assert = require('assert')
-let calculateNumber = require('./0-calcus.js')
+let calculateNumber = require('./0-calcul.js')
 
 describe("check the cases", () => {
     it("Have to return 5", () => {
