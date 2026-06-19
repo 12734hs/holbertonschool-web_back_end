@@ -2,13 +2,10 @@
 """
 THis file we use for create a simple Flask App
 """
-import flask
-from flask import Flask, render_template, request
-from flask_babel import Babel
-import pytz
-from flask import Flask, render_template, request
-from flask_babel import Babel
 from datetime import datetime
+import pytz
+from flask import Flask, render_template, request, g
+from flask_babel import Babel, format_datetime
 
 
 class Config:
@@ -47,7 +44,18 @@ babel = Babel()
 @app.before_request
 def before_request():
     """We use that for add the func before request"""
-    flask.g.user = get_user()
+    g.user = get_user()
+    if g.user:
+        tz_name = g.user.get('timezone', app.config['BABEL_DEFAULT_TIMEZONE'])
+        try:
+            tz = pytz.timezone(tz_name)
+        except pytz.UnknownTimeZoneError:
+            tz = pytz.timezone(app.config['BABLE_DEFAULT_LANGUAGE'])
+
+        now_utc = datetime.utcnow()
+        now_user = pytz.utc.localize(now_utc).astimezone(tz)
+
+        g.user['current_time'] = format_datetime(now_user, format='medium')
 
 
 def get_locale():
@@ -58,13 +66,12 @@ def get_locale():
     if locale in app.config['LANGUAGES']:
         return locale
 
-    if flask.g.user and flask.g.get('locale') in app.config['LANGUAGES']:
-        return flask.g.user.get('locale')
+    if g.user and g.get('locale') in app.config['LANGUAGES']:
+        return g.user.get('locale')
 
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
-babel.init_app(app, locale_selector=get_locale)
 def get_timezone():
     """
     we use that function for getting a timezone from browser
@@ -78,9 +85,9 @@ def get_timezone():
         except pytz.UnknownTimeZoneError:
             pass
 
-    if flask.g.user:
+    if g.user:
         try:
-            zone = flask.g.user.get('timezone')
+            zone = g.user.get('timezone')
             pytz.timezone(zone)
             return zone
         except pytz.UnknownTimeZoneError:
@@ -97,9 +104,8 @@ def main_page():
     """
     This route is main route, which show us the main page
     """
-    return render_template('5-index.html')
-    return render_template('7-index.html')
+    return render_template('index.html')
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5000, debug=True)
