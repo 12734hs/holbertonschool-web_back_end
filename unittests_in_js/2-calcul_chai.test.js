@@ -1,4 +1,4 @@
-let assert = require('chai')
+let { expect } = require('chai')
 let calculateNumber = require('./1-calcul.js')
 
 describe("calculateNumber", () => {
