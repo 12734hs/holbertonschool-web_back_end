@@ -1,5 +1,5 @@
 let { expect } = require('chai')
-let calculateNumber = require('./1-calcul.js')
+let calculateNumber = require('./2-calcul_chai.js')
 
 describe("calculateNumber", () => {
     it('sum', () => {
