@@ -4,7 +4,7 @@ function getPaymentTokenFromApi(success) {
             resolve({data: 'Successful response from the API' })
         }
         else {
-            reject()
+            reject({data: 'The connection was failed'})
         }
     })
 }
