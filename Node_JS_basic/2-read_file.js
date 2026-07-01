@@ -6,9 +6,9 @@ function countStudents(path) {
   }
 
   try {
-    const file = fs.readFileSync(path, 'utf8').trim();
+    const files = fs.readFileSync(path, 'utf8').trim();
 
-    const lines = file
+    const lines = files
       .split('\n')
       .filter((line) => line.trim().length > 0);
 
@@ -34,7 +34,7 @@ function countStudents(path) {
       field[field].push(firstName);
     }
 
-    for (const [field, names] of Object.entries(fields)) {
+    for (const [field, names] of Object.entries(field)) {
       console.log(`Number of students in ${field}: ${names.length}. List: ${names.join(', ')}`);
     }
   } catch (error) {
