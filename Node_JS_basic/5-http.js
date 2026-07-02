@@ -13,12 +13,12 @@ const app = http.createServer((req, res) => {
     countStudents(dbName)
       .then((result) => {
         res.end(`This is the list of our students\n${result}`);
-    })
+      })
       .catch(() => {
         res.statusCode = 500;
         res.end('This is the list of our students\nCannot load the database');
-    });
-}
+      });
+  }
   else {
     res.writeHead(404);
     res.end();}
