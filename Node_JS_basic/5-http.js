@@ -8,7 +8,7 @@ const app = http.createServer((req, res) => {
   if (req.url === '/') {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end('Hello Holberton School!');
-  }
+  } 
   else if (req.url === '/students') {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     countStudents(dbName)
@@ -19,10 +19,11 @@ const app = http.createServer((req, res) => {
         res.statusCode = 500;
         res.end('This is the list of our students\nCannot load the database');
       });
-  }
+  } 
   else {
     res.writeHead(404);
-    res.end();}
+    res.end(); 
+  }
 });
 
 app.listen(PORT);
