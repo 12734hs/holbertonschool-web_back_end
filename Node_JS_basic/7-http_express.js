@@ -1,7 +1,9 @@
 const PORT = 1245;
 const express = require('express');
-const dbName = require('./3-read_file_async')
+const countStudents = require('./3-read_file_async')
 const app = express();
+
+const dbName = process.argv[2];
 
 app.get('/', (request, response) => {
   response.send('Hello Holberton School!');
