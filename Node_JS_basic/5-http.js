@@ -2,7 +2,7 @@ const PORT = 1245;
 const http = require('http');
 const countStudents = require('./3-read_file_async');
 
-const db_name = process.argv[2];
+const dbName = process.argv[2];
 
 const app = http.createServer((req, res) => {
     if (req.url === '/') {
@@ -10,18 +10,18 @@ const app = http.createServer((req, res) => {
       res.end('Hello Holberton School!');}
     else if (req.url === '/students') {
       res.writeHead(200, { 'Content-Type': 'text/plain' });
-      countStudents(db_name)
+      countStudents(dbName)
         .then((result) => {
-            res.end(`This is the list of our students\n${result}`);
+          res.end(`This is the list of our students\n${result}`);
         })
         .catch(() => {
-            res.statusCode = 500;
-            res.end('This is the list of our students\nCannot load the database');
+          res.statusCode = 500;
+          res.end('This is the list of our students\nCannot load the database');
         });
     }
     else {
-        res.writeHead(404);
-        res.end();
+      res.writeHead(404);
+      res.end();
     }
 });
 
