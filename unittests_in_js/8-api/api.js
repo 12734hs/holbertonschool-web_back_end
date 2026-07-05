@@ -11,6 +11,7 @@ app.get('/health', (req, res) => {
     res.send('server is alive!!!')
 })
 
+
 if (require.main === module){
     app.listen(PORT, () => {
         console.log('API available on localhost port 7865')

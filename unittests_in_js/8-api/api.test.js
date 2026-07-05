@@ -27,4 +27,9 @@ describe('CHecking the backend system', () => {
             })
         })
     })
+    describe('GET /cart/:id', () => {
+        it('checking with the num', () => {
+            
+        })
+    })
 })
