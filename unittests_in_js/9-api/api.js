@@ -17,7 +17,7 @@ app.get('/cart/:id', (req, res) => {
         return res.status(404).send('error')
     }
 
-    return res.send(`Payment method for cart :${id}`)
+    return res.send(`Payment methods for cart ${id}`)
 })
 
 if (require.main === module){

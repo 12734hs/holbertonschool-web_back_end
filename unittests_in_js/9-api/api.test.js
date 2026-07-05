@@ -30,7 +30,7 @@ describe('CHecking the backend system', () => {
     describe('GET /cart/:id', () => {
         it('checking with the num', (done) => {
             request('http://localhost:7865/cart/10', (err, res, body) => {
-                expect(body).to.equal('Payment method for cart :10');
+                expect(body).to.equal('Payment methods for cart 10');
                 done();
             })
         });
